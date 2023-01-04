@@ -1,0 +1,57 @@
+﻿@model FabrikaHR.Models.Concrate.User
+@{
+    ViewData["Title"] = "PersonelEkle";
+    Layout = "~/Views/Shared/_YoneticiLayout.cshtml";
+}
+
+<h2>Personel Ekleme Ekranı</h2>
+<br />
+<br />
+
+<form class="form-group" method="post">
+
+    <b>Personel Adı</b>
+    <br />
+    @Html.TextBoxFor(x=>x.PersonelAdi, new{@class="form-control"})
+    <br />
+    <b>Personel Soyadı</b>
+    <br />
+    @Html.TextBoxFor(x=>x.PersonelSoyadi, new{@class="form-control"})
+    <br />
+    <b>Kullanıcı Adı</b>
+    <br />
+    @Html.TextBoxFor(x=>x.KullaniciAdi, new{@class="form-control"})
+    <br />
+    <b>Şifre</b>
+    <br />
+    @Html.TextBoxFor(x=>x.Sifre, new{@class="form-control"})
+    <br />
+    <b>Doğum Tarihi(GG/AA/YYYY)</b>
+    <br />
+    @Html.TextBoxFor(x=>x.DogumTarihi, new{@class="form-control"})
+    <br />
+    <b>Doğum Yeri</b>
+    <br />
+    @Html.TextBoxFor(x=>x.DogumYeri, new{@class="form-control"})
+    <br />
+    <b>Telefon Numarası</b>
+    <br />
+    @Html.TextBoxFor(x=>x.TelefonNumarasi, new{@class="form-control"})
+    <br />
+    <b>Adres</b>
+    <br />
+    @Html.TextBoxFor(x=>x.Adres, new{@class="form-control"})
+    <br />
+    <b>Departman</b>
+    <br />
+    @Html.TextBoxFor(x=>x.Departman, new{@class="form-control"})
+    <br />
+    <b>İletişim</b>
+    <br />
+    @Html.TextBoxFor(x=>x.Iletisim, new{@class="form-control"})
+    <br />
+    <br />
+    <button class="btn btn-success">Personel Kaydet</button>
+</form>
+
+

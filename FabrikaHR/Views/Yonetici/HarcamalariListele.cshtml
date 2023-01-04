@@ -1,0 +1,90 @@
+﻿@using FabrikaHR.Models.Concrate
+@model List<Harcama>
+
+@{
+    ViewData["Title"] = "HarcamalariListele";
+    Layout = "~/Views/Shared/_YoneticiLayout.cshtml";
+}
+
+<h2>Harcama Talepleri</h2>
+<br />
+<br />
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800"></h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Harcama Numarası</th>
+                            <th>Harcama Türü</th>
+                            <th>Talep Tarihi</th>
+                            <th>Talep Eden Personel Adı</th>
+                            <th>Talep Eden Personel Soyadı</th>
+                            <th>Para Birimi</th>
+                            <th>Harcama Tutarı</th>
+                            <th>Onay Durumu</th>
+                            <th>Cevaplanma Tarihi</th>
+                            <th>Onayla</th>
+                            <th>Reddet</th>
+                            <th>Beklemeye Al</th>
+
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.HarcamaID</td>
+                                <td>@item.HarcamaTuru</td>
+                                <td>@item.TalepTarihi</td>
+
+                                @{
+                                    Context db = new Context();
+                                    var personel = db.Users.Where(x => x.UserID == item.UserID).FirstOrDefault();
+                                }
+
+                                <td>@personel.PersonelAdi</td>
+                                <td>@personel.PersonelSoyadi</td>
+                                <td>@item.ParaBirimi</td>
+                                <td>@item.HarcamaTutari</td>
+                                @{
+                                    if (item.OnayDurumu == "Onaylandi")
+                                    {
+                                        <td class="bg-success">@item.OnayDurumu</td>
+
+                                    }
+
+                                    else if (item.OnayDurumu == "Reddedildi")
+                                    {
+                                        <td class="bg-danger">@item.OnayDurumu</td>
+                                    }
+
+                                    else if (item.OnayDurumu == "Beklemede")
+                                    {
+                                        <td class="bg-warning">@item.OnayDurumu</td>
+
+                                    }
+
+                                }
+                                <td>@item.CevaplanmaTarihi</td>
+                                <td><a href="/Yonetici/HarcamaOnayla/@item.HarcamaID" class="btn btn-success">Onayla</a> </td>
+                                <td><a href="/Yonetici/HarcamaReddet/@item.HarcamaID" class="btn btn-danger">Reddet</a> </td>
+                                <td><a href="/Yonetici/HarcamaBeklet/@item.HarcamaID" class="btn btn-secondary">Beklemeye Al</a> </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

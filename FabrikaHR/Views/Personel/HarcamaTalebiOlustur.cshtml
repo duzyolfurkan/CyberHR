@@ -1,0 +1,30 @@
+﻿@model FabrikaHR.Models.Concrate.Harcama
+
+@{
+    ViewData["Title"] = "HarcamaTalebiOlustur";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<h1>Harcama Talep Ekranı</h1>
+<br />
+<br />
+<form class="form-group" method="post">
+
+    <b>Harcama Türü</b>
+    <br />
+    @Html.TextBoxFor(x=>x.HarcamaTuru, new{@class="form-control"})
+    <b>Para Birimi</b>
+    <br />
+    @Html.TextBoxFor(x=>x.ParaBirimi, new{@class="form-control"})
+    <b>Harcama Tutarı</b>
+    <br />
+    @Html.TextBoxFor(x=>x.HarcamaTutari, new{@class="form-control"})
+    <b>User ID</b>
+    <br />
+    @Html.TextBoxFor(x=>x.UserID, new{@class="form-control"})
+    <br />
+    <br />
+    <button class="btn btn-info">Harcama Talebi Gir</button>
+
+</form>
+

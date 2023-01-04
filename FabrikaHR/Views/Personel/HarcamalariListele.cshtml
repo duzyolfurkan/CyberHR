@@ -1,0 +1,80 @@
+﻿@using FabrikaHR.Models.Concrate
+@model List<Harcama>
+
+@{
+    ViewData["Title"] = "HarcamalariListele";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<h2>Harcamalar Listesi</h2>
+<br />
+<br />
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800"></h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Harcama ID</th>
+                            <th>Talep Tarihi</th>
+                            <th>Talep Eden Adı</th>
+                            <th>Talep Eden Soyadı</th>
+                            <th>Para Birimi</th>
+                            <th>Harcama Tutarı</th>
+                            <th>Cevaplanma Tarihi</th>
+                            <th>Onay Durumu</th>
+                            
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.HarcamaID</td>
+                                <td>@item.TalepTarihi</td>
+
+                                @{
+                                    Context db = new Context();
+                                    var secilenKullanici = db.Users.Where(x => x.UserID == item.UserID).FirstOrDefault();
+                                }
+
+                                <td>@secilenKullanici.PersonelAdi</td>
+                                <td>@secilenKullanici.PersonelSoyadi</td>
+                                <td>@item.ParaBirimi</td>
+                                <td>@item.HarcamaTutari</td>
+                                <td>@item.CevaplanmaTarihi</td>
+                                @{
+                                    if (item.OnayDurumu == "Beklemede")
+                                    {
+                                        <td class="bg-info">@item.OnayDurumu</td>
+                                    }
+
+                                    else if (item.OnayDurumu == "Reddedildi")
+                                    {
+                                        <td class="bg-danger">@item.OnayDurumu</td>
+                                    }
+
+                                    else if (item.OnayDurumu == "Onaylandi")
+                                    {
+                                        <td class="bg-success">@item.OnayDurumu</td>
+                                    }
+                                }
+
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

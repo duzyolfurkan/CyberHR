@@ -1,0 +1,33 @@
+﻿@model FabrikaHR.Models.Concrate.Avans
+@using FabrikaHR.Models.Enums
+
+@{
+    ViewData["Title"] = "AvansTalebiGir";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+<h2>Avans Talep Girişi</h2>
+<br />
+<br />
+<b>Talep Türü</b>
+<br />
+@Html.TextBoxFor(x=>x.TalepTuru, new{@class="form-control"})
+<b>Para Birimi</b>
+<br />
+@Html.TextBoxFor(x=>x.ParaBirimi, new{@class="form-control"})
+<b>Talep Tutarı</b>
+<br />
+@Html.TextBoxFor(x=>x.TalepTutari, new{@class="form-control"})
+<b>Açıklama</b>
+<br />
+@Html.TextBoxFor(x=>x.Aciklama, new{@class="form-control"})
+<b>User ID</b>
+<br />
+@Html.TextBoxFor(x=>x.UserID, new{@class="form-control"})
+<br />
+<br />
+<button class="btn btn-info">Avans Talebi Gir</button>
+
+</form>

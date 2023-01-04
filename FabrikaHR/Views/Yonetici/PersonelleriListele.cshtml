@@ -1,0 +1,89 @@
+﻿@using FabrikaHR.Models.Concrate
+@model List<User>
+
+@{
+    ViewData["Title"] = "PersonelleriListele";
+    Layout = "~/Views/Shared/_YoneticiLayout.cshtml";
+}
+
+<h2>Kayıtlı Personeller</h2>
+<br />
+<br />
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800"></h1>
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Personel No</th>
+                            <th>Personel Adı</th>
+                            <th>Personel Soyadı</th>
+                            <th>Kullanıcı Adı</th>
+                            <th>Şifre</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Doğum Yeri</th>
+                            <th>İşe Giriş Tarihi</th>
+                            <th>Mail Adresi</th>
+                            <th>Telefon Numarası</th>
+                            <th>Adres</th>
+                            <th>Departman</th>
+                            <th>Çalışma Statüsü</th>
+                            <th>İletişim</th>
+                            <th>Bilgi Güncelleme</th>
+                            <th>Personel Kaydı Silme</th>
+                            <th>Personel Statü Güncelleme</th>
+                            <th>Kullanıcı Bilgilerini Gönder</th>
+
+                        </tr>
+                    </thead>
+                   
+                    @foreach(var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.UserID</td>
+                                <td>@item.PersonelAdi</td>
+                                <td>@item.PersonelSoyadi</td>
+                                <td>@item.KullaniciAdi</td>
+                                <td>@item.Sifre</td>
+                                <td>@item.DogumTarihi</td>
+                                <td>@item.DogumYeri</td>
+                                <td>@item.IseGirisTarihi</td>
+                                <td>@item.MailAdresi</td>
+                                <td>@item.TelefonNumarasi</td>
+                                <td>@item.Adres</td>
+                                <td>@item.Departman</td>
+                                @{
+                                    if (item.CalismaStatusu == "Aktif")
+                                    {
+                                        <td class="bg-success">@item.CalismaStatusu</td>
+                                    }
+
+                                    else
+                                    {
+                                        <td class="bg-danger">@item.CalismaStatusu</td>
+                                    }
+                                }
+                                <td>@item.Iletisim</td>
+                                <td><a href="/Yonetici/PersonelGetir/@item.UserID" class="btn btn-primary">Güncelle</a> </td>
+                                <td><a href="/Yonetici/PersonelSil/@item.UserID" class="btn btn-danger">Sil</a> </td>
+                                <td><a href="/Yonetici/PersonelStatuDegistir/@item.UserID" class="btn btn-success">Statü Güncelle</a> </td>
+                                <td><a href="/Yonetici/PersonelBilgileriniGonder/@item.UserID" class="btn btn-secondary">Kullanıcı Bilgilerini Gönder</a> </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                                
